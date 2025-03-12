@@ -14,9 +14,9 @@ namespace E_commerce_app_dotnet
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll", builder =>
+                options.AddPolicy("AllowSpecificOrigins", builder =>
                 {
-                    builder.AllowAnyOrigin()
+                    builder.WithOrigins("https://e-commerce-app-dotnet.pawelsobon.pl", "https://www.e-commerce-app-dotnet.pawelsobon.pl")
                            .AllowAnyMethod()
                            .AllowAnyHeader();
                 });
