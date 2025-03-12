@@ -10,8 +10,8 @@ namespace E_commerce_app_dotnet
         {
             app.UseRouting();
 
-            app.UseCors("AllowAll");
-
+            app.UseCors("AllowSpecificOrigins");
+            
             app.Use(async (context, next) =>
             {
                 await next();
