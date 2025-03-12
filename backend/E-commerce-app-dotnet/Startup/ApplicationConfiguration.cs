@@ -8,19 +8,12 @@ namespace E_commerce_app_dotnet
     {
         public static WebApplication ConfigureApplication(this WebApplication app)
         {
-            app.Logger.LogInformation("Inicjalizacja aplikacji...");
-
             app.UseRouting();
 
             app.UseCors("AllowAll");
 
             app.Use(async (context, next) =>
             {
-                app.Logger.LogInformation("Otrzymano żądanie: {Method} {Path}", context.Request.Method, context.Request.Path);
-                if (context.Request.Headers.ContainsKey("Origin"))
-                {
-                    app.Logger.LogInformation("Żądanie pochodzi z: {Origin}", context.Request.Headers["Origin"]);
-                }
                 await next();
             });
 
@@ -30,7 +23,6 @@ namespace E_commerce_app_dotnet
             app.Use(async (context, next) =>
             {
                 await next();
-                app.Logger.LogInformation("Nagłówki odpowiedzi: {Headers}", context.Response.Headers);
             });
 
             return app;
