@@ -90,3 +90,8 @@ Create a file named `appsettings.json` and configure it with the following value
 }
 ```
 
+### Running the Application
+
+- **Backend** runs on `http://localhost:8080` (unless configured otherwise in `appsettings.json`).
+- **Frontend** runs on `http://localhost:5173` (default Vite port).
+
