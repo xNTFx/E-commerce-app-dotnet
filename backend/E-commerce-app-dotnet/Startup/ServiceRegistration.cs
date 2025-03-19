@@ -1,4 +1,4 @@
-﻿using E_commerce_app_dotnet.Repositories;
+using E_commerce_app_dotnet.Repositories;
 using E_commerce_app_dotnet.Repositories.Interfaces;
 using E_commerce_app_dotnet.Services;
 using E_commerce_app_dotnet.Services.Interfaces;
@@ -18,7 +18,8 @@ namespace E_commerce_app_dotnet
                 {
                     builder.WithOrigins("https://e-commerce-app-dotnet.pawelsobon.pl", "https://www.e-commerce-app-dotnet.pawelsobon.pl")
                            .AllowAnyMethod()
-                           .AllowAnyHeader();
+                           .AllowAnyHeader()
+                           .AllowCredentials();
                 });
             });
 
