@@ -13,7 +13,12 @@ int port = builder.Configuration.GetValue<int>("Server:Port", 8080);
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 var app = builder.Build();
+app.UseRouting();
 
-app.ConfigureApplication();
+app.UseCors("AllowSpecificOrigins");
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
