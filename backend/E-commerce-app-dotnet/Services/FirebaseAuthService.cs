@@ -1,8 +1,9 @@
-﻿using E_commerce_app_dotnet.Services.Interfaces;
+using E_commerce_app_dotnet.Services.Interfaces;
 using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
@@ -34,7 +35,10 @@ namespace E_commerce_app_dotnet.Services
                 }
 
                 var formattedPrivateKey = privateKey.Replace("\\n", "\n");
-                string json = $"{{\"type\": \"service_account\", \"project_id\": \"{projectId}\", \"private_key_id\": \"\", \"private_key\": \"{formattedPrivateKey}\", \"client_email\": \"{clientEmail}\", \"client_id\": \"\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"\"}}";
+
+                var escapedPrivateKey = JsonConvert.SerializeObject(formattedPrivateKey);
+
+                string json = $"{{\"type\": \"service_account\", \"project_id\": \"{projectId}\", \"private_key_id\": \"\", \"private_key\": {escapedPrivateKey}, \"client_email\": \"{clientEmail}\", \"client_id\": \"\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"\"}}";
 
                 FirebaseApp.Create(new AppOptions()
                 {
